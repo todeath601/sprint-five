@@ -138,7 +138,12 @@ type Walking struct {
 // Это переопределенный метод Calories() из Training.
 func (w Walking) Calories() float64 {
 	// вставьте ваш код ниже
-	return ((CaloriesWeightMultiplier*w.Weight + ((math.Pow(w.meanSpeed(), 2)*KmHInMsec)/(w.Height/CmInM))*CaloriesSpeedHeightMultiplier*w.Weight) * w.Duration.Hours() * MinInHours)
+	// return ((CaloriesWeightMultiplier*w.Weight + ((math.Pow(w.meanSpeed(), 2)*KmHInMsec)/(w.Height/CmInM))*CaloriesSpeedHeightMultiplier*w.Weight) * w.Duration.Hours() * MinInHours)
+	if w.Duration == 0 {
+		return 0
+	}
+	return (CaloriesWeightMultiplier*w.Training.Weight + (math.Pow(w.Training.meanSpeed()*KmHInMsec, 2)/w.Height)*CaloriesSpeedHeightMultiplier*w.Training.Weight) * float64(w.Training.Duration.Hours()) * MinInHours
+
 	// проерить квадрат/км в метры и проверить дюратион
 }
 
