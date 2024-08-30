@@ -143,7 +143,7 @@ func (w Walking) Calories() float64 {
 		return 0
 	}
 	// скорость в метрах в секунду
-	return (CaloriesWeightMultiplier*w.Training.Weight + (math.Pow(w.meanSpeed()*KmHInMsec, 2)/(w.Height/CmInM))*CaloriesSpeedHeightMultiplier*w.Weight) * float64(w.Training.Duration.Hours()) * MinInHours
+	return ((CaloriesWeightMultiplier*w.Weight + (math.Pow(w.meanSpeed()*KmHInMsec, 2)/(w.Height/CmInM))*CaloriesSpeedHeightMultiplier*w.Weight) * float64(w.Training.Duration.Hours()) * MinInHours)
 
 }
 
